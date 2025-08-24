@@ -1,18 +1,43 @@
-# Python
+# Python bytecode
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.egg-info/
+*.py[cod]
+*$py.class
 
 # Virtual environment
 .venv/
+env/
+venv/
+*.env
 
 # PyCharm
 .idea/
+*.iml
+*.iws
+*.ipr
 
-# Alembic / Migrations
-migrations/__pycache__/
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
 
 # Logs
 *.log
+
+# Alembic / Migrations cache
+migrations/__pycache__/
+migrations/versions/__pycache__/
+
+# pytest cache
+.pytest_cache/
+.cache/
+
+# mypy cache
+.mypy_cache/
+.dmypy.json
+
+# VSCode
+.vscode/
+
+# Docker
+docker-compose.override.yml
+*.env
