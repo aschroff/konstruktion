@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: mein_projekt_postgres
+    environment:
+      POSTGRES_USER: konstruktion
+      POSTGRES_PASSWORD: herzstueck
+      POSTGRES_DB: konstruktion_db
+    ports:
+      - "5433:5432"  # Lokaler Port 5433, um Konflikt mit lokalem Postgres zu vermeiden
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

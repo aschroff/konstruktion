@@ -1,0 +1,30 @@
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from app.database.session import SessionLocal
+from app.domains.auftrag.context_boundary import create_auftrag,get_auftrag_by_id, AuftragCreate, AuftragRead
+from app.services.calculation_service import run_calculation
+
+router = APIRouter()
+
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+@router.post("/auftrag", response_model=AuftragRead)
+def create_endpoint(auftrag: AuftragCreate, db: Session = Depends(get_db)):
+    result = run_calculation(auftrag)
+    db_obj = create_auftrag(db, auftrag, result)
+    return db_obj
+
+
+@router.get("/auftrag/{auftrag_id}", response_model=AuftragRead)
+def read_endpoint(auftrag_id: int, db: Session = Depends(get_db)):
+    db_obj = get_auftrag_by_id(db, auftrag_id)  # call via context_boundary
+    if not db_obj:
+        raise HTTPException(status_code=404, detail="Auftrag not found")
+    return db_obj

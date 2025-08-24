@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Konstruktion"
+version = "0.1.0"
+description = "FastAPI + SQLAlchemy + Pydantic + PyTorch Projekt"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "pydantic"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "pydantic[mypy]",
+     "httpx",
+    "pytest-asyncio",
+    "alembic"
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+
+[tool.mypy]
+python_version = "3.11"
+disallow_untyped_defs = true
+check_untyped_defs = true
+strict_optional = true
+plugins = ["pydantic.mypy"]
+exclude = [".venv"]
+
+[tool.pytest.ini_options]
+addopts = "-v"
+testpaths = ["app/tests", "app/api/tests", "app/domains/auftrag/tests"]
