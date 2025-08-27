@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database.session import SessionLocal
-from app.domains.auftrag.context_boundary import create_auftrag,get_auftrag_by_id, AuftragCreate, AuftragRead
+from app.domains.auftrag.context_boundary import get_auftrag_by_id, AuftragCreate, AuftragRead
 from app.services.calculation_service import run_calculation
+from app.domains.auftrag import create_auftrag
 
 router = APIRouter()
 
