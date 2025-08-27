@@ -1,57 +1,57 @@
-# Konstruktion
+# Projekt Konstruktion
 
-A **FastAPI-based project** demonstrating a modular DDD-style architecture with SQLAlchemy, Pydantic, Alembic migrations, PyTorch computation, and PostgreSQL running in Docker.
-
-The project is structured to support **multiple domains**, **context boundaries**, and **service orchestration**, making it easy to extend and maintain.
-
-
-## ⚙ Technologies Used
-
-
-- **FastAPI** – REST API framework  
-- **Pydantic** – Data validation and serialization  
-- **SQLAlchemy** – ORM for database modeling  
-- **PostgreSQL** – Relational database (via Docker)  
-- **Alembic** – Database migrations  
-- **PyTorch** – GPU/CPU computations  
-- **pytest** – Unit and integration testing  
-- **Just** – Task runner for testing, migrations, and more  
+This is the **Konstruktion** FastAPI project. This README explains how to set up, run, and develop the project. Setup is automated using `just` and the `initialize` command.
 
 ---
 
-## 🚀 Installation
+## Table of Contents
 
-1. **Clone the repository**
+- [Requirements](#requirements)
+- [Project Setup](#project-setup)
+- [Running the Server](#running-the-server)
+- [Testing](#testing)
+- [Linting and Type Checking](#linting-and-type-checking)
+- [Database Migrations](#database-migrations)
+- [Interactive Development in PyCharm](#interactive-development-in-pycharm)
+- [Git Workflow](#git-workflow)
+- [Notes](#notes)
+
+---
+
+## Requirements
+
+Before setting up the project, make sure your system meets the following requirements:
+
+- **Operating System:** macOS (Intel or Apple Silicon)
+- **Python:** 3.12+  
+  - Preferably installed via `pyenv` or system Python
+- **Just:** [https://github.com/casey/just](https://github.com/casey/just)
+- **UV (Universe):** [https://uv.dev](https://uv.dev) for dependency management
+- **Docker:** for local database
+  - Docker Compose should also be installed
+- **Git:** for version control
+
+---
+
+## Project Setup
+
+All setup steps for a new developer are automated using `just initialize`. This handles:
+
+1. Creating a Python virtual environment in `.venv`.
+2. Installing runtime dependencies.
+3. Installing development dependencies (testing, linting, type checking, etc.).
+4. Installing the project in **editable mode** (`pip install -e .`) so that code changes in `src/` are reflected immediately.
+5. Installing PyTorch (Apple Silicon compatible if required).
+
+### Additional Steps Before Running Tests
+
+- Make sure Docker is running, since the project uses a local database container.
+- Initialize the database and run the initial migrations (this will usually be done automatically by the first test run, but can be done manually):
 
 ```bash
-git clone https://github.com/<your-username>/konstruktion.git
-cd konstruktion
-```
-
-2. **Create Python virtual environment**
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-
-3. **Install dependencies**
-
-```bash
-uv install -e .[dev]
-```
-
-4. **Start PostgreSQL with Docker**
-
-```bash
+# Start the database container
 docker compose up -d
-```
 
-5. **Create database tables**
-
-```bash
+# Apply the initial migrations
 just migrate-up
 ```
-
----
