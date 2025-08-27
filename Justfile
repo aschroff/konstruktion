@@ -18,10 +18,10 @@ serve:
     {{venv}}/uvicorn app.main:app --reload
 
 lint:
-    {{venv}}/black . && {{venv}}/isort . && {{venv}}/flake8 .
+    {{venv}}/black src && {{venv}}/isort src && {{venv}}/flake8 src
 
 typecheck:
-    {{venv}}/mypy .
+    {{venv}}/mypy src
 
 test:
     {{venv}}/pytest -v

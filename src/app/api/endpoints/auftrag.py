@@ -2,11 +2,11 @@ from typing import Generator
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.database.session import SessionLocal
-from app.domains.auftrag.context_boundary import get_auftrag_by_id, AuftragCreate, AuftragRead
-from app.services.calculation_service import run_calculation
-from app.domains.auftrag import create_auftrag
-from app.domains.auftrag.models import Auftrag
+from database.session import SessionLocal
+from domains.auftrag.context_boundary import get_auftrag_by_id, AuftragCreate, AuftragRead
+from services.calculation_service import run_calculation
+from domains.auftrag import create_auftrag
+from domains.auftrag.models import Auftrag
 
 router = APIRouter()
 
