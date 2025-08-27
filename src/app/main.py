@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.endpoints import auftrag
+from app.api.endpoints import auftrag
 
 app = FastAPI()
 

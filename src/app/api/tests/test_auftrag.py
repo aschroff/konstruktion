@@ -1,14 +1,16 @@
 import pytest
 from fastapi.testclient import TestClient
-from main import app
+from app.main import app
 
 client = TestClient(app)
 
+
 @pytest.fixture
-def test_auftrag_payload()->dict[str, str]:
+def test_auftrag_payload() -> dict[str, str]:
     return {"name": "Testauftrag"}
 
-def test_create_and_get_auftrag(test_auftrag_payload:dict)-> None:
+
+def test_create_and_get_auftrag(test_auftrag_payload: dict) -> None:
     # Create Auftrag
     response = client.post("/api/auftrag", json=test_auftrag_payload)
     assert response.status_code == 200, f"Create failed: {response.text}"
@@ -24,4 +26,3 @@ def test_create_and_get_auftrag(test_auftrag_payload:dict)-> None:
     assert data2["id"] == auftrag_id
     assert data2["name"] == test_auftrag_payload["name"]
     assert data2["result"] == data["result"]
-

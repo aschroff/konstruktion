@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float
-from database.session import Base
+from app.database.session import Base
+
 
 class Auftrag(Base):
     __tablename__ = "auftraege"
