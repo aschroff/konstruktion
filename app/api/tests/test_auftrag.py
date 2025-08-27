@@ -5,10 +5,10 @@ from app.main import app
 client = TestClient(app)
 
 @pytest.fixture
-def test_auftrag_payload():
+def test_auftrag_payload()->dict[str, str]:
     return {"name": "Testauftrag"}
 
-def test_create_and_get_auftrag(test_auftrag_payload):
+def test_create_and_get_auftrag(test_auftrag_payload:dict)-> None:
     # Create Auftrag
     response = client.post("/api/auftrag", json=test_auftrag_payload)
     assert response.status_code == 200, f"Create failed: {response.text}"
