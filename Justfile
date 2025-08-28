@@ -48,6 +48,7 @@ install-torch:
 # 3. Install dev dependencies
 # 4. Install the project in editable mode
 # 5. Install PyTorch (Apple Silicon aware)
+# 6. Install pre-commit hooks (formatting, linting, type-checking)
 initialize:
     @echo "Setting up development environment..."
     python -m venv .venv
@@ -56,7 +57,9 @@ initialize:
     just install-dev
     just install-editable
     just install-torch
-    @echo "Done! You can now run 'just serve', 'just test', 'just lint', etc."
+    {{venv}}/pre-commit install --hook-type pre-commit --hook-type pre-push
+    @echo "✅ Done! You can now run 'just serve', 'just test', 'just lint', etc."
+    @echo "ℹ️ Pre-commit hooks are installed (black, ruff, mypy, detect-secrets)."
 
 # -------------------------
 # Server & testing

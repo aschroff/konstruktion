@@ -1,17 +1,39 @@
 repos:
+  # --- Formatting (Black) ---
   - repo: https://github.com/psf/black
     rev: 24.8.0
     hooks:
       - id: black
 
+  # --- Linting (Ruff) ---
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.6.9
     hooks:
       - id: ruff
       - id: ruff-format
 
+  # --- Type Checking (Mypy) ---
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.11.1
     hooks:
       - id: mypy
-        additional_dependencies: [fastapi, types-requests]
+        additional_dependencies:
+          - fastapi
+          - types-requests
+
+  # --- Generic checks (whitespace, config files) ---
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-added-large-files
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  # --- Secret scanning ---
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
