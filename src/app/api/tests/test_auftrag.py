@@ -6,13 +6,13 @@ client = TestClient(app)
 
 
 @pytest.fixture
-def test_auftrag_payload() -> dict[str, str]:
+def auftrag_payload() -> dict[str, str]:
     return {"name": "Testauftrag"}
 
 
-def test_create_and_get_auftrag(test_auftrag_payload: dict) -> None:
+def test_create_and_get_auftrag(auftrag_payload: dict) -> None:
     # Create Auftrag
-    response = client.post("/api/auftrag", json=test_auftrag_payload)
+    response = client.post("/api/auftrag", json=auftrag_payload)
     assert response.status_code == 200, f"Create failed: {response.text}"
     data = response.json()
     assert "id" in data
@@ -24,5 +24,5 @@ def test_create_and_get_auftrag(test_auftrag_payload: dict) -> None:
     assert response.status_code == 200, f"Get failed: {response.text}"
     data2 = response.json()
     assert data2["id"] == auftrag_id
-    assert data2["name"] == test_auftrag_payload["name"]
+    assert data2["name"] == auftrag_payload["name"]
     assert data2["result"] == data["result"]
