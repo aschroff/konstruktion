@@ -67,6 +67,6 @@ dev = [
     "konstruktion[dev]",
     "mypy>=1.17.1",
     "pre-commit>=4.3.0",
+    "python-dotenv>=1.1.1",
     "ruff>=0.12.10",
 ]
-

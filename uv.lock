@@ -408,6 +408,7 @@ dev = [
     { name = "konstruktion", extra = ["dev"] },
     { name = "mypy" },
     { name = "pre-commit" },
+    { name = "python-dotenv" },
     { name = "ruff" },
 ]
 
@@ -437,6 +438,7 @@ dev = [
     { name = "konstruktion", extras = ["dev"], editable = "." },
     { name = "mypy", specifier = ">=1.17.1" },
     { name = "pre-commit", specifier = ">=4.3.0" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
     { name = "ruff", specifier = ">=0.12.10" },
 ]
 
